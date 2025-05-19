@@ -1,16 +1,65 @@
-const db = require('../config/db');
+const db=require("../config/database")
+const Teacher  =db.Teacher 
 
-exports.getAllTypes = (req, res) => {
-    db.query('SELECT DISTINCT type FROM plants', (err, results) => {
-        if (err) return res.status(500).send(err);
-        res.json(results);
-    });
-};
+module.exports = {
 
-exports.updateType = (req, res) => {
-    const { id, type } = req.body;
-    db.query('UPDATE plants SET type = ? WHERE id = ?', [type, id], (err) => {
-        if (err) return res.status(500).send(err);
-        res.json({ message: 'Type mis à jour ' });
-    });
-};
+    getAllTypes : function(req, res) {
+        const users=Types.findAll()
+        .then(users => {
+            res.send(users);
+        })
+        .catch(err => {
+            res.status(500).send("err");
+        })},
+    getOneTypes : function(req, res) {
+        var userid=req.params.id
+        types .findByPk(userid)
+        .then(users => {
+            res.send(users);
+        })
+        .catch(err => {
+            res.status(500).send("err");
+        })
+
+
+    },
+    addTypes : function(req, res) {
+    var add=req.body
+    types .create(add)
+    .then(users => {
+        res.send(users);
+    })
+    .catch(err => {
+        res.status(500).send("err");
+    })
+
+    },
+    delitetypes :function (req,res){
+        const id = req.params.id;
+
+        Types .destroy({ where: { id: id } })
+.then(users => {
+    res.send(users);
+})
+.catch(err => {
+    res.status(500).send("err");
+})
+
+    },
+
+    updateTypes :function(req,res){
+        const id = req.params.id;
+
+        Types.update (req.body,{ where: { id: id } })
+        .then(users => {
+            res.send(users);
+        })
+        .catch(err => {
+            res.status(500).send("err");
+        })
+
+
+
+    }
+
+}

@@ -10,9 +10,9 @@ const db={}
 db.Sequelize=sequelize
 db.Sequelize=Sequelize
 
-// db.name =require("../models/name")(sequelize,DataTypes)
-// db.price=require("../models/price")(sequelize,DataTypes)
-// db.types=require("../models/types")(sequelize,DataTypes)
+db.name =require("../models/name")(sequelize,DataTypes)
+db.price=require("../models/price")(sequelize,DataTypes)
+db.types=require("../models/types")(sequelize,DataTypes)
 
 
 console.log("db connect");

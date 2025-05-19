@@ -1,16 +1,65 @@
-const db = require('../config/db');
+const db=require("../config/database")
+const price =db.price
 
-exports.getAllPrices = (req, res) => {
-    db.query('SELECT id, name, price FROM plants', (err, results) => {
-        if (err) return res.status(500).send(err);
-        res.json(results);
-    });
-};
+module.exports = {
 
-exports.updatePrice = (req, res) => {
-    const { id, price } = req.body;
-    db.query('UPDATE plants SET price = ? WHERE id = ?', [price, id], (err) => {
-        if (err) return res.status(500).send(err);
-        res.json({ message: 'Prix mis à jour ' });
-    });
-};
+  getAllPrice: function(req, res) {
+      const users=price.findAll()
+      .then(users => {
+          res.send(users);
+      })
+      .catch(err => {
+          res.status(500).send("err");
+      })},
+  getOnePrice: function(req, res) {
+      var userid=req.params.id
+      price.findByPk(userid)
+      .then(users => {
+          res.send(users);
+      })
+      .catch(err => {
+          res.status(500).send("err");
+      })
+
+
+  },
+  addPrice: function(req, res) {
+  var add=req.body
+  price.create(add)
+  .then(users => {
+      res.send(users);
+  })
+  .catch(err => {
+      res.status(500).send("err");
+  })
+
+  },
+  delitePrice:function (req,res){
+      const id = req.params.id;
+
+      price.destroy({ where: { id: id } })
+.then(users => {
+  res.send(users);
+})
+.catch(err => {
+  res.status(500).send("err");
+})
+
+  },
+
+  updatePrice:function(req,res){
+      const id = req.params.id;
+
+      price.update (req.body,{ where: { id: id } })
+      .then(users => {
+          res.send(users);
+      })
+      .catch(err => {
+          res.status(500).send("err");
+      })
+
+
+
+  }
+
+}
