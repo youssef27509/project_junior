@@ -18,8 +18,8 @@ db.types=require("../models/types")(sequelize,DataTypes)
 console.log("db connect");
 
 
- sequelize.sync({alter:true})
- .then(()=>{console.log("database is synced")})
- .catch((err)=>{console.log(err)})
+ //sequelize.sync({alter:true})
+ //.then(()=>{console.log("database is synced")})
+ //.catch((err)=>{console.log(err)})
 
 module.exports = db;

@@ -1,19 +1,14 @@
 const express = require('express');
 const router = express.Router();
 
-// Require controller modules.
-const { getAllNames, updateName} = require('../controllers/name');
 
-/// POSTS ROUTES ///
+const { addname,getAllname,getOnename ,UPDATEname, delitename} = require('../controllers/name');
 
-//GET request to fetch all comments for one specific post.
-router.get('/getAll', getAllNames);
-// router.get('/get/:id', getOnename);
-// POST request for adding a new comment.
 
-// router.post('/add', addname);
-// router.delete('/de/:idtypes', deletname)
-router.put('/:update', updateName)
-
+router.get('/getall',getAllname)
+router.post('/add',addname)
+router.get("/get/:id",getOnename)
+router.put('/put/:id',UPDATEname)
+router.delete("/delite/:id",delitename)
 
 module.exports = router;

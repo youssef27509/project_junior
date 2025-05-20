@@ -3,7 +3,7 @@ const name =db.name
 
 module.exports = {
 
-    getAllNames: function(req, res) {
+    getAllName: function(req, res) {
         const users=name.findAll()
         .then(users => {
             res.send(users);
