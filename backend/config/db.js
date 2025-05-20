@@ -7,19 +7,17 @@ dialect:"mysql"
 
 const db={}
 
-db.Sequelize=sequelize
+db.sequelize=sequelize
 db.Sequelize=Sequelize
 
-db.name =require("../models/name")(sequelize,DataTypes)
-db.price=require("../models/price")(sequelize,DataTypes)
-db.types=require("../models/types")(sequelize,DataTypes)
+db.plants =require("../models/Plants")(sequelize,DataTypes)
 
 
 console.log("db connect");
 
 
- //sequelize.sync({alter:true})
- //.then(()=>{console.log("database is synced")})
- //.catch((err)=>{console.log(err)})
+//  sequelize.sync({alter:true})
+//  .then(()=>{console.log("database is synced")})
+//  .catch((err)=>{console.log(err)})
 
 module.exports = db;

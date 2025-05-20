@@ -1,19 +1,19 @@
-const db=require("../config/database")
-const name =db.name
+const db=require("../config/db")
+const plants =db.plants
 
 module.exports = {
 
-    getAllName: function(req, res) {
-        const users=name.findAll()
+    getAllplants: function(req, res) {
+        const users=plants.findAll()
         .then(users => {
             res.send(users);
         })
         .catch(err => {
             res.status(500).send("err");
         })},
-    getOneName: function(req, res) {
+    getOneplants: function(req, res) {
         var userid=req.params.id
-        name.findByPk(userid)
+        plants.findByPk(userid)
         .then(users => {
             res.send(users);
         })
@@ -23,9 +23,9 @@ module.exports = {
 
 
     },
-    addName: function(req, res) {
+    addplants: function(req, res) {
         var hello=req.body
-        name.create(hello)
+        plants.create(hello)
          .then(users => {
                 res.send(users);
             })
@@ -34,10 +34,10 @@ module.exports = {
             });
 
     },
-    deliteName:function (req,res){
+    deliteplants:function (req,res){
         const id = req.params.id;
 
-        name.destroy({ where: { id: id } })
+        plants.destroy({ where: { id: id } })
 .then(users => {
     res.send(users);
 })
@@ -47,10 +47,10 @@ module.exports = {
 
     },
 
-    updateName:function(req,res){
+    updateplants:function(req,res){
         const id = req.params.id;
 
-        name.update (req.body,{ where: { id: id } })
+        plants.update (req.body,{ where: { id: id } })
         .then(users => {
             res.send(users);
         })
